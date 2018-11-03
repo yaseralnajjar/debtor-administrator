@@ -14,10 +14,10 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.0.0-rc.12",
-    "@vue/cli-plugin-eslint": "^3.0.0-rc.12",
-    "@vue/cli-service": "^3.0.0-rc.12",
-    "vue-template-compiler": "^2.5.17"
+    "@vue/cli-plugin-babel": "^3.0.5",
+    "@vue/cli-plugin-eslint": "^3.0.5",
+    "@vue/cli-service": "^3.0.5",
+    "vue-template-compiler": "^2.5.17",
   },
   "babel": {
     "presets": [
