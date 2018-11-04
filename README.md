@@ -1,7 +1,13 @@
-# Django Vue Template ✌️ 🐍
+## Django Vuetify Template ✌️ 🐍
 
-![Vue Logo](/src/assets/logo-vue.png "Vue Logo")
-![Django Logo](/src/assets/logo-django.png "Django Logo")
+<img src="/src/assets/readme.png">
+
+This template has been forked to be used in a Django and Vuetify application, you can start your next awesome project from here too!  
+
+## What is new in this template
+- Update devDependencies versions.
+- Installing PWA (Progressive Web Apps) support.
+- Install Vuetify Framework.
 
 This template is a minimal example for an application using VueJs and Django (RestFramework).
 
@@ -133,7 +139,7 @@ The `Procfile` will run Django migrations and then launch Django'S app using gun
 
 ##### Heroku One Click Deploy
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/gtalarico/django-vue-template)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/Alhakem/django-vuetify-template)
 
 ## Static Assets
 
