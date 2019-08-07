@@ -48,7 +48,12 @@ class InvoiceViewSet(viewsets.ModelViewSet):
     serializer_class = InvoiceSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
+        queryset = self.filter_queryset(self.get_queryset())\
+                       .custom_filter(debtor_email=request.query_params.get('email', None),
+                                      invoice_status=request.query_params.get('status', None),
+                                      amount=request.query_params.get('amount', None),
+                                      due_date=request.query_params.get('due_date', None),
+                                      orderby=request.query_params.get('orderby', None))
 
         page = self.paginate_queryset(queryset)
         if page is not None:

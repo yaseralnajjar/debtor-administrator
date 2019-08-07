@@ -6,34 +6,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from .fields import IBANField
 
+from .querysets import DebtorQuerySet, InvoiceQuerySet
+
 User = get_user_model()
-
-class DebtorQuerySet(models.QuerySet):
-    def with_invoices_stats(self):
-        result = self.select_related('invoices')
-        count_open_invoices_query = models.Count('invoices', filter=models.Q(invoices__status=Invoice.OPEN))
-        count_overdue_invoices_query = models.Count('invoices', filter=models.Q(invoices__status=Invoice.OVERDUE))
-        count_paid_invoices_query = models.Count('invoices', filter=models.Q(invoices__status=Invoice.PAID))
-        result = self.annotate(open_invoices_count=count_open_invoices_query,
-                               overdue_invoices_count=count_overdue_invoices_query,
-                               paid_invoices_count=count_paid_invoices_query)
-
-        return result
-
-    def filter_by_invoices(self, invoice_status=None, count=None):
-        filters = {}
-
-        if invoice_status:
-            filters['invoices__status'] = invoice_status
-
-        if count:
-            invoice_status_string = Invoice.STATUS_CHOICES_DICT[invoice_status]
-            count_field_name = f'{invoice_status_string}_invoices_count'
-            filters[count_field_name] = count
-
-        print(filters)
-
-        return self.filter(**filters)
 
         
 class Debtor(models.Model):
@@ -72,6 +47,8 @@ class Invoice(models.Model):
     due_date = models.DateField(blank=False)
     
     debtor = models.ForeignKey(Debtor, on_delete=models.CASCADE, related_name='invoices')
+
+    objects = InvoiceQuerySet.as_manager()
 
     def is_created_by_admin(self, admin):
         return self.debtor.admin_creator == admin
