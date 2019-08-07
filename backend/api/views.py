@@ -1,5 +1,7 @@
 from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
+
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 
@@ -19,9 +21,20 @@ class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
 
 
+
+
 class DebtorViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated, CreatedByCurrentAdmin)
     queryset = Debtor.objects.all()
     serializer_class = DebtorSerializer
 
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset()).with_invoices_stats()
 
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
