@@ -6,6 +6,9 @@ let $backend = axios.create({
   headers: {'Content-Type': 'application/json'}
 })
 
+$backend.defaults.xsrfHeaderName = "X-CSRFToken"
+$backend.defaults.xsrfCookieName = 'csrftoken'
+
 // Response Interceptor to handle and log errors
 $backend.interceptors.response.use(function (response) {
   return response
@@ -29,5 +32,13 @@ $backend.$deleteMessage = (msgId) => {
     return $backend.delete(`messages/${msgId}`)
         .then(response => response.data)
 }
+
+$backend.$googleLogin = (token) => {
+  return $backend.post('/auth/google/', { access_token: token })
+    .then(resp => resp.data.key )
+    .catch(err => { console.log(err.response) })
+}
+
+
 
 export default $backend
