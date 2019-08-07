@@ -10,7 +10,7 @@ User = get_user_model()
 
 class DebtorQuerySet(models.QuerySet):
     def with_invoices_stats(self):
-        self.select_related('invoices')
+        result = self.select_related('invoices')
         count_open_invoices_query = models.Count('invoices', filter=models.Q(invoices__status=Invoice.OPEN))
         count_overdue_invoices_query = models.Count('invoices', filter=models.Q(invoices__status=Invoice.OVERDUE))
         count_paid_invoices_query = models.Count('invoices', filter=models.Q(invoices__status=Invoice.PAID))
@@ -19,6 +19,21 @@ class DebtorQuerySet(models.QuerySet):
                                paid_invoices_count=count_paid_invoices_query)
 
         return result
+
+    def filter_by_invoices(self, invoice_status=None, count=None):
+        filters = {}
+
+        if invoice_status:
+            filters['invoices__status'] = invoice_status
+
+        if count:
+            invoice_status_string = Invoice.STATUS_CHOICES_DICT[invoice_status]
+            count_field_name = f'{invoice_status_string}_invoices_count'
+            filters[count_field_name] = count
+
+        print(filters)
+
+        return self.filter(**filters)
 
         
 class Debtor(models.Model):
@@ -43,10 +58,15 @@ class Invoice(models.Model):
     OVERDUE = '1'
     PAID = '2'
     STATUS_CHOICES = (
-        (OPEN, _('Open')),
-        (OVERDUE, _('Overdue')),
-        (PAID, _('Paid')),
+        (OPEN, _('open')),
+        (OVERDUE, _('overdue')),
+        (PAID, _('paid')),
     )
+    STATUS_CHOICES_DICT = {
+        OPEN: 'open',
+        OVERDUE: 'overdue',
+        PAID: 'paid',
+    }
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=OPEN, blank=False)
     amount = models.DecimalField(max_digits=10, decimal_places=2, blank=False)
     due_date = models.DateField(blank=False)

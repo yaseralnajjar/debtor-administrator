@@ -28,7 +28,10 @@ class DebtorViewSet(viewsets.ModelViewSet):
     serializer_class = DebtorSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset()).with_invoices_stats()
+        queryset = self.filter_queryset(self.get_queryset())\
+                       .with_invoices_stats()\
+                       .filter_by_invoices(invoice_status=request.query_params.get('status', None),
+                                           count=request.query_params.get('count', None))
 
         page = self.paginate_queryset(queryset)
         if page is not None:
