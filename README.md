@@ -41,6 +41,10 @@ docker-compose -f docker-compose-dev.yml up -d
 
 You will find the app on [http://debtor.admin](http://debtor.admin)
 
+## Adding Social App
+
+You need to add your Google OAuth credentials to the app through the Django admin.
+
 ##### Heroku One Click Deploy
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/yaseralnajjar/hackcyprus-hitup)
