@@ -18,18 +18,23 @@ $backend.interceptors.response.use(function (response) {
   return Promise.reject(error)
 })
 
-$backend.$fetchMessages = () => {
-    return $backend.get(`messages/`)
+$backend.$fetchDebtors = () => {
+    return $backend.get(`debtors/`)
         .then(response => response.data)
 }
 
-$backend.$postMessage = (payload) => {
-    return $backend.post(`messages/`, payload)
+$backend.$postDebtor = (payload) => {
+    return $backend.post(`debtors/`, payload)
         .then(response => response.data)
 }
 
-$backend.$deleteMessage = (msgId) => {
-    return $backend.delete(`messages/${msgId}`)
+$backend.$putDebtor = (payload) => {
+  return $backend.put(`debtors/`, payload)
+      .then(response => response.data)
+}
+
+$backend.$deleteDebtor = (debtorId) => {
+    return $backend.delete(`debtors/${debtorId}`)
         .then(response => response.data)
 }
 

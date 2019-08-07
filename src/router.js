@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloComponent from './components/HelloComponent/HelloComponent.vue'
-import DebtorsComponent from './components/DebtorsComponent/DebtorsComponent.vue'
+import DebtorsListComponent from './components/DebtorsListComponent/DebtorsListComponent.vue'
 
 import store from '@/store/store'
 
