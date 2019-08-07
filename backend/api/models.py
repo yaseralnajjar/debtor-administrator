@@ -17,6 +17,8 @@ class Debtor(models.Model):
 
     admin_creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_debtors')
 
+    def is_created_by_admin(self, admin):
+        return self.admin_creator == admin
     def __str__(self):
         return f'{self.first_name} {self.last_name} IBAN: {self.iban}'
 

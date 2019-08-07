@@ -8,6 +8,7 @@ from rest_auth.registration.views import SocialLoginView
 
 from .models import Debtor
 from .serializers import DebtorSerializer
+from .permissions import CreatedByCurrentAdmin
 
 
 # Serve Vue Application
@@ -19,7 +20,7 @@ class GoogleLogin(SocialLoginView):
 
 
 class DebtorViewSet(viewsets.ModelViewSet):
-    permission_classes = (IsAuthenticated, )
+    permission_classes = (IsAuthenticated, CreatedByCurrentAdmin)
     queryset = Debtor.objects.all()
     serializer_class = DebtorSerializer
 
