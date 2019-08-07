@@ -6,6 +6,8 @@ Debtor
 	email
 	iban
 	
+	admin_creator_id
+	
 Invoice
 	status
 	amount
