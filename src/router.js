@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import HelloComponent from './components/HelloComponent/HelloComponent.vue'
 import DebtorsComponent from './components/DebtorsComponent/DebtorsComponent.vue'
 
+import store from '@/store/store'
+
 Vue.use(Router)
 
 export default new Router({
@@ -19,7 +21,8 @@ export default new Router({
     {
       path: '/debtors',
       name: 'debtors',
-      component: DebtorsComponent
+      component: DebtorsComponent,
+      beforeEnter: (to, from, next) => { (!store.getters.isLoggedIn) ? next('/') : next() }
     }
   ]
 })
