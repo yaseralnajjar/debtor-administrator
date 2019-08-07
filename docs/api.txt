@@ -1,0 +1,33 @@
+GET /debtors? status&count returns 200 OK
+```
+debtors
+	id
+	email
+	open_invoices_count
+	overdue_invoices_count
+	paid_invoices_count
+```
+
+
+
+PUT /debtors/{id} accepts
+```
+first_name
+last_name
+email
+iban
+```
+
+PUT /debtors/{id} returns 200 OK
+PUT /debtors/{id} returns 403 Forbidden
+
+
+
+GET /invoices? email&status&amount&due_date returns 200 OK
+```
+invoices
+	status
+	amount
+	due_date
+	debtor_email
+```

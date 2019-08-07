@@ -1,0 +1,14 @@
+User
+
+Debtor
+	first_name
+	last_name
+	email
+	iban
+	
+Invoice
+	status
+	amount
+	due_date
+	
+	debtor_id
