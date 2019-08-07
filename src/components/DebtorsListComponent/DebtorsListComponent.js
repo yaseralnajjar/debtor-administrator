@@ -1,5 +1,5 @@
 export default {
-  name: 'HelloComponent',
+  name: 'DebtorsListComponent',
   data() {
     return {
       headers: [
@@ -15,15 +15,15 @@ export default {
   },
   methods: {
     getDebtors(){
-      this.$backend.$fetchDebtors().then(resp => {
+      this.$backend.$fetchDebtors().then(response => {
         //console.log(resp)
-        this.debtors = resp
+        this.debtors = response
       })
     },
     deleteDebtor(id){
 
       this.$backend.$deleteDebtor(id)
-      .then(resp => {
+      .then(response => {
         let idx = this.debtors.findIndex(i => i.id === id)
         this.debtors.splice(idx, 1)
       })

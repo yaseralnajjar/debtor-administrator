@@ -23,13 +23,18 @@ $backend.$fetchDebtors = () => {
         .then(response => response.data)
 }
 
+$backend.$fetchDebtor = (debtorId) => {
+  return $backend.get(`debtors/${debtorId}`)
+      .then(response => response.data)
+}
+
 $backend.$postDebtor = (payload) => {
     return $backend.post(`debtors/`, payload)
         .then(response => response.data)
 }
 
-$backend.$putDebtor = (payload) => {
-  return $backend.put(`debtors/`, payload)
+$backend.$putDebtor = (debtorId, payload) => {
+  return $backend.put(`debtors/${debtorId}/`, payload)
       .then(response => response.data)
 }
 
@@ -40,7 +45,7 @@ $backend.$deleteDebtor = (debtorId) => {
 
 $backend.$googleLogin = (token) => {
   return $backend.post('/auth/google/', { access_token: token })
-    .then(resp => resp.data.key )
+    .then(response => response.data.key )
     .catch(err => { console.log(err.response) })
 }
 
