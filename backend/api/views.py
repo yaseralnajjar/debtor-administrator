@@ -6,7 +6,8 @@ from rest_framework import viewsets
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
 
-from .models import Message, MessageSerializer
+from .models import Debtor
+from .serializers import DebtorSerializer
 
 
 # Serve Vue Application
@@ -17,9 +18,9 @@ class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
 
 
-class MessageViewSet(viewsets.ModelViewSet):
+class DebtorViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated, )
-    queryset = Message.objects.all()
-    serializer_class = MessageSerializer
+    queryset = Debtor.objects.all()
+    serializer_class = DebtorSerializer
 
 
