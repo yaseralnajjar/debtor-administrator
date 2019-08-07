@@ -8,8 +8,8 @@ from rest_framework import viewsets
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
 
-from .models import Debtor
-from .serializers import DebtorSerializer
+from .models import Debtor, Invoice
+from .serializers import DebtorSerializer, InvoiceSerializer
 from .permissions import CreatedByCurrentAdmin
 
 
@@ -17,10 +17,9 @@ from .permissions import CreatedByCurrentAdmin
 index_view = never_cache(TemplateView.as_view(template_name='index.html'))
 
 
+
 class GoogleLogin(SocialLoginView):
     adapter_class = GoogleOAuth2Adapter
-
-
 
 
 class DebtorViewSet(viewsets.ModelViewSet):
@@ -38,3 +37,21 @@ class DebtorViewSet(viewsets.ModelViewSet):
 
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
+
+
+class InvoiceViewSet(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated, CreatedByCurrentAdmin)
+    queryset = Invoice.objects.all()
+    serializer_class = InvoiceSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+        

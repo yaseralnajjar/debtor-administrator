@@ -48,10 +48,13 @@ class Invoice(models.Model):
         (PAID, _('Paid')),
     )
     status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=OPEN, blank=False)
-    amount = models.IntegerField(blank=False)
+    amount = models.DecimalField(max_digits=10, decimal_places=2, blank=False)
     due_date = models.DateField(blank=False)
     
     debtor = models.ForeignKey(Debtor, on_delete=models.CASCADE, related_name='invoices')
+
+    def is_created_by_admin(self, admin):
+        return self.debtor.admin_creator == admin
 
     def __str__(self):
         return f'Amount: {self.amount} Debtor: {self.debtor.first_name}'

@@ -8,10 +8,11 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from .api.views import index_view, DebtorViewSet, GoogleLogin
+from .api.views import index_view, DebtorViewSet, InvoiceViewSet, GoogleLogin
 
 router = routers.DefaultRouter()
 router.register('debtors', DebtorViewSet, base_name='debtors')
+router.register('invoices', InvoiceViewSet, base_name='invoices')
 
 urlpatterns = [
     # http://localhost:8000/
