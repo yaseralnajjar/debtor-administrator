@@ -4,14 +4,16 @@ from django.db import models
 
 from django.utils.translation import ugettext_lazy as _
 
+from .fields import IBANField
 User = get_user_model()
 
 
+        
 class Debtor(models.Model):
     first_name = models.CharField(max_length=30, blank=False)
     last_name = models.CharField(max_length=30, blank=False)
-    email = models.CharField(max_length=30, blank=False)
-    iban = models.CharField(max_length=40, blank=False)
+    email = models.EmailField(blank=False)
+    iban = IBANField()
 
     admin_creator = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_debtors')
 
