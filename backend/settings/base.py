@@ -13,15 +13,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',  # < Per Whitenoise, to disable built in
     'django.contrib.staticfiles',
-    'rest_framework',
+    'django.contrib.sites',
 
+    'rest_framework',
     'rest_framework.authtoken',
     'rest_auth',
-    'django.contrib.sites',
+    'rest_auth.registration',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'rest_auth.registration',
+    'allauth.socialaccount.providers.google',
     'corsheaders',
 
     'backend.api',
@@ -61,19 +62,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# Password validation
-# https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-        'OPTIONS': {
-            'min_length': 6,
-        }
-    },
-]
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -110,14 +98,14 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Account Settings
 
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+#ACCOUNT_EMAIL_REQUIRED = True
+#ACCOUNT_USERNAME_REQUIRED = False
+#ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+#ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 #ACCOUNT_USERNAME_MIN_LENGTH = 3
-ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
-ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
-ACCOUNT_ADAPTER = 'backend.api.adapters.MyAccountAdapter'
+#ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
+#ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
+#ACCOUNT_ADAPTER = 'backend.api.adapters.MyAccountAdapter'
 #ACCOUNT_USERNAME_BLACKLIST = ['system', ]
 
 SITE_ID = 1
@@ -127,14 +115,12 @@ AUTHENTICATION_BACKENDS = (
     'allauth.account.auth_backends.AuthenticationBackend',
 )
 
-REST_AUTH_SERIALIZERS = {
-    'PASSWORD_RESET_SERIALIZER': 'backend.api.serializers.PasswordResetSerializer',
-    'PASSWORD_RESET_CONFIRM_SERIALIZER': 'backend.api.serializers.PasswordResetConfirmSerializer',
-    'USER_DETAILS_SERIALIZER': 'backend.api.serializers.UserSerializer'
-}
-
-REST_AUTH_REGISTER_SERIALIZERS = {
-    'REGISTER_SERIALIZER': 'backend.api.serializers.RegisterSerializer',
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
 
 

@@ -1,16 +1,25 @@
-dj-database-url==0.5.0
+# django and drf
 Django==2.1.3
 django-allauth==0.38.0
-django-cors-middleware==1.3.1
 django-rest-auth==0.9.3
 djangorestframework==3.8.2
-Faker==1.0.0
-gunicorn==19.9.0
-Pillow==5.3.0
-pip==18.1
+djangorestframework-jwt==1.11.0
+django-cors-middleware==1.3.1
+
+# db
+dj-database-url==0.5.0
 psycopg2-binary==2.7.6.1
+
+# prod tools
+gunicorn==19.9.0
+
+# dev tools
+Faker==1.0.0
+pip==18.1
 ptvsd==4.2.0
 pytz==2018.5
+
+# pip tools
 setuptools==40.5.0
 wheel==0.32.2
 whitenoise==4.0
