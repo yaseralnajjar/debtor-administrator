@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+
+
+  db:
+    restart: always
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - /var/dormportal/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: $POSTGRES_DB
+      POSTGRES_USER: $POSTGRES_USER
+      POSTGRES_PASSWORD: $POSTGRES_PASSWORD
+
+
+  nginx:
+    image: nginx:1.15.3-alpine
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx-dev.conf:/etc/nginx/conf.d/debtoradmin.conf
+
+
+  api:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      #args:
+      #  API_BASE_URL: $API_BASE_URL
+
+    #command: sh -c "memcached -d -u root -s /tmp/memcached.sock && gunicorn --bind 0.0.0.0:8000 coretabs.wsgi --timeout 90 --log-level=DEBUG --daemon && celery worker -A coretabs -P solo --loglevel=INFO -n worker.%%h."
+    #command: sh -c "tail -f /dev/null"
+    command: sh -c "crond && gunicorn --bind 0.0.0.0:8000 backend.wsgi --timeout 90 --log-level=DEBUG"
+    #volumes:
+    #  - ./src/api/venv/:/djangoapp/venv/
+    environment:
+      HOST_ENV: $HOST_ENV
+      ALLOWED_HOSTS: $ALLOWED_HOSTS
+      BASE_URL: $BASE_URL
+      DATABASE_URL: $DATABASE_URL
+      DEBUG: $DEBUG
+      DEFAULT_FROM_EMAIL: $DEFAULT_FROM_EMAIL
+      EMAIL_HOST: $EMAIL_HOST
+      EMAIL_HOST_PASSWORD: $EMAIL_HOST_PASSWORD
+      EMAIL_HOST_USER: $EMAIL_HOST_USER
+      SECRET_KEY: $SECRET_KEY
+    links:
+      - db:db
+    ports:
+      - "8000:8000"
