@@ -2,10 +2,13 @@
 node_modules
 db.sqlite3
 /dist
+/venv
+*.pyc
 
 # local env files
 .env.local
 .env.*.local
+dev_secrets.py
 
 # Log files
 npm-debug.log*
