@@ -15,15 +15,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 
-# CSRF & Session Domains
-COOKIE_DOMAINS = {
-    'http://hackcyprus-hitup.herokuapp.com': 'hackcyprus-hitup.herokuapp.com',
-    'http://127.0.0.1:8000': '127.0.0.1',
-    'http://127.0.0.1:8080': '127.0.0.1',
-    'http://localhost:8080': '127.0.0.1'
-}
-
-
 # Database
 DATABASES = {
     'default': {
@@ -38,9 +29,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # run "python -m smtpd -n -c DebuggingServer localhost:1025"
 EMAIL_HOST = 'localhost'
-
-# Reservations settings
-IS_ALWAYS_REVIEWABLE = True
 
 # 5678 is the default attach port in the VS Code debug configurations
 if False:

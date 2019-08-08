@@ -18,17 +18,6 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = False
 
 
-# CSRF & Session Domains
-# Sample env var: 'https://www.example.com=.example.com;https://example.com=.example.com'
-try:
-    COOKIE_DOMAINS = dict(
-        (host, target) for host, target in (
-            a.split('=') for a in os.environ.get('COOKIE_DOMAINS').split(';'))
-    )
-except:
-    COOKIE_DOMAINS = {}
-
-
 # Database
 DATABASES = {
     'default': dj_database_url.config(
