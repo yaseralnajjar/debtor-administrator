@@ -25,5 +25,11 @@ export default {
           localStorage.removeItem('auth')
           resolve()
         });
+    },
+    notAllowed({ commit }) {
+      commit('notAllowed')
+    },
+    clearNotAllowed({ commit }) {
+      commit('clearNotAllowed')
     }
 }    

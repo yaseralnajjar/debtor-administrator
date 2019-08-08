@@ -2,6 +2,7 @@ export default {
   name: 'DebtorsListComponent',
   data() {
     return {
+      snackbarNotAllowed: false,
       headers: [
         { text: 'email', value: 'email' },
         { text: 'open invoices', value: 'open_invoices_count' },
@@ -30,11 +31,16 @@ export default {
       .catch(error => {
         if(error.response.status==403){
           console.log('unauthorized')
+          this.snackbarNotAllowed = true
         }
       })
     }
   },
   mounted() {
     this.getDebtors()
+    if(this.$store.getters.isAllowed == false){
+      this.snackbarNotAllowed = true
+      this.$store.dispatch('clearNotAllowed')
+    }
   }
 }

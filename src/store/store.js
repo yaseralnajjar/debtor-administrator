@@ -12,6 +12,8 @@ export default new Vuex.Store({
     state: {
         authStatus: '',
         isAuth: localStorage.getItem('auth'),
+        name: '',
+        isAllowed: true
     },
 
     getters,

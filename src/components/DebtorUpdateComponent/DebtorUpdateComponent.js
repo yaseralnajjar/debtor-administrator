@@ -2,6 +2,7 @@ export default {
   name: 'DebtorUpdateComponent',
   data() {
     return {
+      snackbarUpdated: false,
       valid: false,
       debtorId: '',
       firstName: '',
@@ -30,12 +31,13 @@ export default {
         this.lastName = response.last_name
         this.email = response.email
         this.iban = response.iban
-        console.log(response)
+        //console.log(response)
       })
       .catch(error => {
         if(error.response.status==403){
-          console.log('unauthorized')
-          //this.$router.go('debtors/')
+          //console.log('unauthorized')
+          this.$store.dispatch('notAllowed')
+          this.$router.push({ path : '/debtors' })
         }
       })
     },
@@ -57,8 +59,9 @@ export default {
         }
         this.$backend.$putDebtor(this.debtorId, new_debtor)
         .then(response => {
-          console.log(response)
-          console.log('done')
+          //console.log('done updating')
+          this.snackbarUpdated = true
+          setTimeout( () => this.$router.push({ path : '/debtors' }), 3000)
         })
       }
     }

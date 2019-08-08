@@ -13,7 +13,6 @@ export default {
       const token = user.Zi.access_token
       const userFullName = user.getBasicProfile().ig
       this.$store.dispatch('auth', { token,  userFullName})
-      this.$router.push('debtors')
     },
     onGoogleSignInError(error) {
       console.log('OH NOES', error)
