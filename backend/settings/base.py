@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'corsheaders',
 
-    'backend.api',
+    'backend.debtors',
     'backend.authentication',
 ]
 
@@ -106,7 +106,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #ACCOUNT_USERNAME_MIN_LENGTH = 3
 #ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = False
 #ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
-#ACCOUNT_ADAPTER = 'backend.api.adapters.MyAccountAdapter'
+#ACCOUNT_ADAPTER = 'backend.debtors.adapters.MyAccountAdapter'
 #ACCOUNT_USERNAME_BLACKLIST = ['system', ]
 
 SITE_ID = 1

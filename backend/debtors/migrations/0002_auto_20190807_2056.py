@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('api', '0001_initial'),
+        ('debtors', '0001_initial'),
     ]
 
     operations = [
@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
                 ('status', models.CharField(choices=[('0', 'Open'), ('1', 'Overdue'), ('2', 'Paid')], default='0', max_length=2)),
                 ('amount', models.IntegerField()),
                 ('due_date', models.DateField()),
-                ('debtor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='invoices', to='api.Debtor')),
+                ('debtor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='invoices', to='debtors.Debtor')),
             ],
         ),
         migrations.DeleteModel(
