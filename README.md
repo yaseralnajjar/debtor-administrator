@@ -41,9 +41,29 @@ docker-compose -f docker-compose-dev.yml up -d
 
 You will find the app on [http://debtor.admin](http://debtor.admin)
 
-## Adding Social App
+## Deploy Guide
+
+You can use the "one-click deploy" button below to try it out on Heroku, but you would still to do the following:
+
+1. Add admin user
+
+Simply by running these commands, you will get an admin account with "admin" password.
+
+> DONT FORGET TO CHANGE PASSWORD LATER
+
+```
+heroku git-remote -a YOUR_APP_NAME
+heroku run python manage.py shell
+from django.contrib.auth.models import User
+User.objects.create_superuser('admin', 'admin@example.com', 'admin')
+```
+
+2. Adding Social App
 
 You need to add your Google OAuth credentials to the app through the Django admin.
+
+3. ENJOY!
+
 
 ##### Heroku One Click Deploy
 
