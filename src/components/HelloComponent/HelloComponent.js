@@ -4,7 +4,7 @@ export default {
     return {
       user: {},
       googleSignInParams: {
-        client_id: '693415395547-p47sfv65kq7culuf2u1ci74gqbb73e6p.apps.googleusercontent.com'
+        client_id: '693415395547-5vu6ctkm4979fte6c48ub7vdb51fsurj.apps.googleusercontent.com'
       }
     }
   },
