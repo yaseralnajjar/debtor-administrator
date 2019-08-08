@@ -3,43 +3,41 @@
     "description": "",
     "repository": "https://github.com/yaseralnajjar/debtor-administrator",
     "env": {
-      "env": {
-        "HOST_ENV": {
-            "description": "Set Django Settings to Production",
-            "value": "production"
-        },
-        "DEBUG": {
-            "description": "Debug django settings",
-            "value": "false"
-        },
-        "SECRET_KEY": {
-            "description": "Your Django Secret Key",
-            "value": "123456"
-        },
-        "ALLOWED_HOSTS": {
-            "description": "Allowing Your app URL",
-            "value": "YOUR_APP_NAME.herokuapp.com;www.example.com;.example.com"
-        }
+      "HOST_ENV": {
+          "description": "Set Django Settings to Production",
+          "value": "production"
+      },
+      "DEBUG": {
+          "description": "Debug django settings",
+          "value": "false"
+      },
+      "SECRET_KEY": {
+          "description": "Your Django Secret Key",
+          "value": "123456"
+      },
+      "ALLOWED_HOSTS": {
+          "description": "Allowing Your app URL",
+          "value": "YOUR_APP_NAME.herokuapp.com;www.example.com;.example.com"
       }
-     },
-     "engines": {
-        "yarn": "1.4.0",
-        "npm": "6.2.0"
-     },
+    },
+    "engines": {
+       "yarn": "1.4.0",
+       "npm": "6.2.0"
+    },
     "addons": [
-        {
-            "plan": "heroku-postgresql",
-            "options": {
-                "version": "9.5"
-            }
-        }
-     ],
-     "buildpacks": [
        {
-         "url": "heroku/nodejs"
-        },
-        {
-          "url": "heroku/python"
-        }
+           "plan": "heroku-postgresql",
+           "options": {
+               "version": "9.5"
+           }
+       }
+    ],
+    "buildpacks": [
+      {
+        "url": "heroku/nodejs"
+       },
+       {
+         "url": "heroku/python"
+       }
     ]
   }
