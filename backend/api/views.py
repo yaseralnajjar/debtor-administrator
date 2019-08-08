@@ -5,9 +5,6 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 
-from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-from rest_auth.registration.views import SocialLoginView
-
 from .models import Debtor, Invoice
 from .serializers import DebtorSerializer, InvoiceSerializer
 from .permissions import CreatedByCurrentAdmin
@@ -15,11 +12,6 @@ from .permissions import CreatedByCurrentAdmin
 
 # Serve Vue Application
 index_view = never_cache(TemplateView.as_view(template_name='index.html'))
-
-
-
-class GoogleLogin(SocialLoginView):
-    adapter_class = GoogleOAuth2Adapter
 
 
 class DebtorViewSet(viewsets.ModelViewSet):

@@ -8,7 +8,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from .api.views import index_view, DebtorViewSet, InvoiceViewSet, GoogleLogin
+from .api.views import index_view, DebtorViewSet, InvoiceViewSet
 
 router = routers.DefaultRouter()
 router.register('debtors', DebtorViewSet, base_name='debtors')
@@ -24,7 +24,7 @@ urlpatterns = [
     # http://localhost:8000/api/admin/
     path('api/admin/', admin.site.urls),
 
-    path('api/auth/google/', GoogleLogin.as_view(), name='google_login')
+    path('api/auth/', include('backend.authentication.urls')),
 ]
 
 
