@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloComponent from './components/HelloComponent/HelloComponent.vue'
 import DebtorsListComponent from './components/DebtorsListComponent/DebtorsListComponent.vue'
 import DebtorUpdateComponent from './components/DebtorUpdateComponent/DebtorUpdateComponent.vue'
+import DebtorCreateComponent from './components/DebtorCreateComponent/DebtorCreateComponent.vue'
 
 import store from '@/store/store'
 
@@ -26,6 +27,11 @@ export default new Router({
     {
       path: '/debtors/update/:id',
       component: DebtorUpdateComponent,
+      beforeEnter: (to, from, next) => { (!store.getters.isLoggedIn) ? next('/') : next() }
+    },
+    {
+      path: '/debtors/create',
+      component: DebtorCreateComponent,
       beforeEnter: (to, from, next) => { (!store.getters.isLoggedIn) ? next('/') : next() }
     }
   ]
