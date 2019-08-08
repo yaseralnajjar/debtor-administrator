@@ -2,6 +2,12 @@
 
 A simple app  manage (CRUD) debtors, their bank account data (IBAN) and invoices.
 
+## Existing Models and APIs
+
+The [models.txt file](./docs/models.txt) and the [api.txt file](./docs/api.txt) contains all the models and the APIs that we have in the app, respectively.
+
+Both of the models and the APIs are built upon the [wireframe file](./docs/wireframe.jpg)
+
 ## Setup
 
 ```
