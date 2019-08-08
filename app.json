@@ -1,12 +1,29 @@
 {
-    "name": "Django VueJs Template",
+    "name": "Debtor Administrator",
     "description": "",
-    "repository": "https://github.com/gtalarico/django-vue-template",
-    "keywords": ["django", "vue", "vuejs", "template", "django rest framework"],
+    "repository": "https://github.com/yaseralnajjar/debtor-administrator",
     "env": {
-      "DJANGO_SETTINGS_MODULE": {
-        "description": "Set Django Settings to Production",
-        "value": "backend.settings.prod"
+      "env": {
+        "HOST_ENV": {
+            "description": "Set Django Settings to Production",
+            "value": "production"
+        },
+        "DEBUG": {
+            "description": "Debug django settings",
+            "value": "false"
+        },
+        "SECRET_KEY": {
+            "description": "Your Django Secret Key",
+            "value": "123456"
+        },
+        "ALLOWED_HOSTS": {
+            "description": "Allowing Your app URL",
+            "value": "YOUR_APP_NAME.herokuapp.com;www.example.com;.example.com"
+        },
+        "DATABASE_URL": {
+            "description": "Database url",
+            "value": "postgres://user:password@db/table"
+        }
       }
      },
      "engines": {
@@ -14,7 +31,12 @@
         "npm": "6.2.0"
      },
     "addons": [
-
+        {
+            "plan": "heroku-postgresql",
+            "options": {
+                "version": "9.5"
+            }
+        }
      ],
      "buildpacks": [
        {
