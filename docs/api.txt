@@ -31,3 +31,8 @@ invoices
 	due_date
 	debtor_email
 ```
+
+POST /auth/google/ accepts
+```
+access_token
+```
