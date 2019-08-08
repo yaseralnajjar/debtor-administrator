@@ -11,7 +11,7 @@ export default {
         { text: 'manage',  },
         { text: '',  },
       ],
-      debtors: {},
+      debtors: [],
     }
   },
   methods: {
