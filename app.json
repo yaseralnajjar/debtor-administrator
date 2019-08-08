@@ -19,10 +19,6 @@
         "ALLOWED_HOSTS": {
             "description": "Allowing Your app URL",
             "value": "YOUR_APP_NAME.herokuapp.com;www.example.com;.example.com"
-        },
-        "DATABASE_URL": {
-            "description": "Database url",
-            "value": "postgres://user:password@db/table"
         }
       }
      },
