@@ -47,4 +47,4 @@ You need to add your Google OAuth credentials to the app through the Django admi
 
 ##### Heroku One Click Deploy
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/yaseralnajjar/hackcyprus-hitup)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/yaseralnajjar/debtor-administrator)
