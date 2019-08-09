@@ -23,7 +23,7 @@ PUT /debtors/{id} returns 403 Forbidden
 
 
 
-GET /invoices? email&status&amount&due_date returns 200 OK
+GET /invoices? email&status&amount&due_date&orderby returns 200 OK
 ```
 invoices
 	status
