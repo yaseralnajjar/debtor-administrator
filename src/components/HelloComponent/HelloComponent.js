@@ -15,7 +15,7 @@ export default {
       this.$store.dispatch('auth', { token,  userFullName})
     },
     onGoogleSignInError(error) {
-      console.log('OH NOES', error)
+      //console.log('OH NOES', error)
     },
     isEmpty(obj) {
       return Object.keys(obj).length === 0

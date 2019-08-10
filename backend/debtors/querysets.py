@@ -33,8 +33,6 @@ class DebtorQuerySet(models.QuerySet):
             count_field_name = f'{invoice_status_string}_invoices_count'
             filters[count_field_name] = count
 
-        print(filters)
-
         return self.filter(**filters)
 
 
