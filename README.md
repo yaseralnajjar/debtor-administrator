@@ -14,7 +14,7 @@ Both of the models and the APIs are built upon the [wireframe file](./docs/wiref
 yarn install
 virtualenv venv
 call venv\Scripts\activate
-pip install -r requirements.txt
+pip install -r requirements_dev.txt
 python manage.py migrate
 ```
 

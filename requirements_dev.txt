@@ -15,6 +15,11 @@ psycopg2-binary==2.7.6.1
 # prod tools
 gunicorn==19.9.0
 
+# dev tools
+Faker==1.0.0
+ptvsd==4.2.0
+pytz==2018.5
+
 # pip tools
 pip==19.2.1
 setuptools==40.5.0
