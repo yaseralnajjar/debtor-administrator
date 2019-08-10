@@ -16,42 +16,32 @@ index_view = never_cache(TemplateView.as_view(template_name='index.html'))
 
 class DebtorViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated, CreatedByCurrentAdmin)
-    queryset = Debtor.objects.all()
     serializer_class = DebtorSerializer
 
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())\
-                       .with_invoices_stats()\
-                       .filter_by_invoices(invoice_status=request.query_params.get('status', None),
-                                           count=request.query_params.get('count', None))
-
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
+    def get_queryset(self):
+        return Debtor.objects\
+                     .with_invoices_stats()\
+                     .filter_by_invoices(invoice_status=self.request.query_params.get('status', None),
+                                         count=self.request.query_params.get('count', None))
 
 
 class InvoiceViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated, CreatedByCurrentAdmin)
-    queryset = Invoice.objects.all()
     serializer_class = InvoiceSerializer
 
-    def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())\
-                       .custom_filter(debtor_email=request.query_params.get('email', None),
-                                      invoice_status=request.query_params.get('status', None),
-                                      amount=request.query_params.get('amount', None),
-                                      due_date=request.query_params.get('due_date', None),
-                                      orderby=request.query_params.get('orderby', None))
+    def get_queryset(self):
+        filters = {
+            'debtor__email': self.request.query_params.get('email', None),
+            'status': self.request.query_params.get('status', None),
+            'amount': self.request.query_params.get('amount', None),
+            'due_date': self.request.query_params.get('due_date', None),
+        }
+        filters = {k:v for k,v in filters.items() if v is not None}
 
-        page = self.paginate_queryset(queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
+        result = Invoice.objects.filter(**filters)
 
-        serializer = self.get_serializer(queryset, many=True)
-        return Response(serializer.data)
-        
+        orderby = self.request.query_params.get('orderby', None)                                       
+        if orderby:
+           result = result.order_by(orderby)
+
+        return result

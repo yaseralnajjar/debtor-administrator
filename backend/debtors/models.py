@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from localflavor.generic.models import IBANField
 
-from .querysets import DebtorQuerySet, InvoiceQuerySet
+from .querysets import DebtorQuerySet
 
 User = get_user_model()
 
@@ -47,8 +47,6 @@ class Invoice(models.Model):
     due_date = models.DateField(blank=False)
     
     debtor = models.ForeignKey(Debtor, on_delete=models.CASCADE, related_name='invoices')
-
-    objects = InvoiceQuerySet.as_manager()
 
     def is_created_by_admin(self, admin):
         return self.debtor.admin_creator == admin

@@ -12,7 +12,6 @@ class DebtorQuerySet(models.QuerySet):
     }
 
     def with_invoices_stats(self):
-        result = self.select_related('invoices')
         count_open_invoices_query = models.Count('invoices', filter=models.Q(invoices__status=DebtorQuerySet.OPEN))
         count_overdue_invoices_query = models.Count('invoices', filter=models.Q(invoices__status=DebtorQuerySet.OVERDUE))
         count_paid_invoices_query = models.Count('invoices', filter=models.Q(invoices__status=DebtorQuerySet.PAID))
@@ -34,28 +33,3 @@ class DebtorQuerySet(models.QuerySet):
             filters[count_field_name] = count
 
         return self.filter(**filters)
-
-
-class InvoiceQuerySet(models.QuerySet):
-    def custom_filter(self, debtor_email=None, invoice_status=None, amount=None, due_date=None, orderby=None):
-        result = self.select_related('invoices')
-        filters = {}
-
-        if debtor_email:
-            filters['debtor__email'] = debtor_email
-
-        if invoice_status:
-            filters['status'] = invoice_status
-
-        if amount:
-            filters['amount'] = amount
-
-        if due_date:
-            filters['due_date'] = due_date
-
-        result = self.filter(**filters)
-
-        if orderby:
-            result = result.order_by(orderby)
-
-        return result
