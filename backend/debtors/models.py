@@ -4,7 +4,7 @@ from django.db import models
 
 from django.utils.translation import ugettext_lazy as _
 
-from .fields import IBANField
+from localflavor.generic.models import IBANField
 
 from .querysets import DebtorQuerySet, InvoiceQuerySet
 
