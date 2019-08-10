@@ -34,5 +34,6 @@ export default new Router({
       component: DebtorCreateComponent,
       beforeEnter: (to, from, next) => { (!store.getters.isLoggedIn) ? next('/') : next() }
     }
-  ]
+  ],
+  mode: 'history'
 })
