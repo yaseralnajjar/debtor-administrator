@@ -4,7 +4,7 @@ export default {
     return {
       user: {},
       googleSignInParams: {
-        client_id: '693415395547-5vu6ctkm4979fte6c48ub7vdb51fsurj.apps.googleusercontent.com'
+        client_id: process.env.GOOGLE_OAUTH_CLIENT_ID
       }
     }
   },

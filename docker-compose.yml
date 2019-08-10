@@ -47,7 +47,8 @@ nginx:
       EMAIL_HOST_PASSWORD: $EMAIL_HOST_PASSWORD
       EMAIL_HOST_USER: $EMAIL_HOST_USER
       SECRET_KEY: $SECRET_KEY
-
+    args:
+      GOOGLE_OAUTH_CLIENT_ID: $GOOGLE_OAUTH_CLIENT_ID
     links:
       - db:db
     ports:

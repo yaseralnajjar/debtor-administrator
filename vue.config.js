@@ -1,8 +1,18 @@
-// const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+const webpack = require('webpack')
+
+//const IS_PRODUCTION = process.env.HOST_ENV === 'production'
+
 
 module.exports = {
     outputDir: 'dist',
     assetsDir: 'static',
+
+    configureWebpack: {
+      plugins: [
+        new webpack.EnvironmentPlugin(['GOOGLE_OAUTH_CLIENT_ID']),
+      ],
+    },
+
     // baseUrl: IS_PRODUCTION
     // ? 'http://cdn123.com'
     // : '/',
