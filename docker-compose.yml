@@ -14,8 +14,7 @@ services:
       POSTGRES_USER: $POSTGRES_USER
       POSTGRES_PASSWORD: $POSTGRES_PASSWORD
 
-
-nginx:
+  nginx:
     image: nginx:1.15.3-alpine
     ports:
       - 80:80
@@ -33,7 +32,7 @@ nginx:
         GOOGLE_OAUTH_CLIENT_ID: $GOOGLE_OAUTH_CLIENT_ID
 
     #command: sh -c "tail -f /dev/null"
-    command: sh -c "crond && gunicorn --bind 0.0.0.0:8000 backend.wsgi --timeout 90 --log-level=DEBUG"
+    command: sh -c "gunicorn --bind 0.0.0.0:8000 backend.wsgi --timeout 90 --log-level=DEBUG"
     environment:
       HOST_ENV: $HOST_ENV
       ALLOWED_HOSTS: $ALLOWED_HOSTS

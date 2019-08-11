@@ -39,10 +39,16 @@ To run the app using Docker just add `127.0.0.1 debtor.admin` into your hosts fi
 
 After that, add your `.env` file similar to [sample.env file](./sample.env)
 
-Then you're ready to launch your containers:
+Then you're ready to launch your development containers:
 
 ```
 docker-compose -f docker-compose-dev.yml up -d
+```
+
+For staging containers:
+
+```
+docker-compose -f docker-compose.yml -f docker-compose-staging.yml up -d
 ```
 
 You will find the app on [http://debtor.admin](http://debtor.admin)
