@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+
+  spa:
+    build:
+      context: .
+      dockerfile: ./dev.vue.Dockerfile
+      args:
+        GOOGLE_OAUTH_CLIENT_ID: $GOOGLE_OAUTH_CLIENT_ID
+
+    #command: sh -c "tail -f /dev/null"
+    command: sh -c "yarn run serve"
+    volumes:
+      - ./:/debtoradmin/app/
+    ports:
+      - "8080:8080"
+
+  api:
+    build:
+      context: .
+      dockerfile: ./dev.django.Dockerfile
+
+    #command: sh -c "tail -f /dev/null"
+    command: sh -c "python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./:/debtoradmin/app/
+    ports:
+      - "8000:8000"

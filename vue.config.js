@@ -21,6 +21,7 @@ module.exports = {
     // Whitenoise will serve once to CDN which will then cache
     // and distribute
     devServer: {
+      port: 8080,
       proxy: {
         '/api*': {
           // Forward frontend dev server request for /api to django dev server
