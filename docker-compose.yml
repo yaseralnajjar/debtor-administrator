@@ -8,7 +8,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - psql_db:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: $POSTGRES_DB
       POSTGRES_USER: $POSTGRES_USER
@@ -48,3 +48,7 @@ services:
       - db:db
     ports:
       - "8000:8000"
+
+
+volumes:
+  psql_db:
