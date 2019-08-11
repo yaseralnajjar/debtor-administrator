@@ -1,5 +1,7 @@
 FROM python:3.6.6-alpine3.8 as setup-python-alpine
 
+WORKDIR /debtoradmin/app
+
 # Needed for pycurl
 ENV PYCURL_SSL_LIBRARY=openssl
 
@@ -14,7 +16,7 @@ RUN apk update \
     && pip install pycurl \
     && apk del .build-dependencies
 
-# Intall python dependencies
+# Install python dependencies
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
@@ -27,16 +29,15 @@ RUN apk del deps
 
 
 FROM node:8.11.4-alpine as build-spa-stage
-ARG HOST_ENV
 ARG GOOGLE_OAUTH_CLIENT_ID
 
 WORKDIR /debtoradmin/app
 
-# install js dependencies
+# Install js dependencies
 COPY package.json yarn.lock ./
 RUN yarn install
 
-# build vue app
+# Build vue app
 COPY vue.config.js .
 COPY public ./public/
 COPY src ./src/
@@ -48,7 +49,6 @@ RUN yarn build
 
 
 FROM setup-python-alpine
-
 ARG IS_BUILD=true
 ARG HOST_ENV
 
