@@ -1,12 +1,34 @@
-db.sqlite3
-__pycache__
+# ----------------
+# rest from .gitignore
+# ----------------
+
+.DS_Store
 *.pyc
-*.pyo
-*.pyd
-.Python
-venv
-.cache
-*.log
-.git
+
+db.sqlite3
+
+dist
+
+# packages folders
 node_modules
-public_html
+venv
+
+# local env files
+.env
+.env.local
+.env.*.local
+dev_secrets.py
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*

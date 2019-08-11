@@ -1,8 +1,11 @@
 import os
 
+IS_BUILD = bool(os.environ.get('IS_BUILD'))
 IS_PRODUCTION = os.environ.get('HOST_ENV') == 'production'
 
-if IS_PRODUCTION:
+if IS_BUILD:
+    from .base import *
+elif IS_PRODUCTION:
     from .prod import *
 else:
     from .dev import *

@@ -8,7 +8,7 @@ DEBUG = bool(os.environ.get('DEBUG'))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # Hosts
-# ALLOWED_HOSTS sample env var: 'www.dorm-portal.com;.dorm-portal.com'
+# ALLOWED_HOSTS sample env var: 'www.debtor-admin.com;.debtor-admin.com'
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(';')
 BASE_URL = os.environ.get('BASE_URL')
 
@@ -29,9 +29,9 @@ DATABASES = {
 # EMAIL config
 """
 Sample env vars:
-DEFAULT_FROM_EMAIL = Dorm Portal <no-reply@dorm-portal.com>
+DEFAULT_FROM_EMAIL = Debtor Administrator <no-reply@debtor-admin.com>
 EMAIL_HOST = smtp.mailgun.org
-EMAIL_HOST_USER = no-reply@dorm-portal.com
+EMAIL_HOST_USER = no-reply@debtor-admin.com
 EMAIL_HOST_PASSWORD = MySuperPassword
 """
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -1,9 +1,13 @@
 .DS_Store
-node_modules
-db.sqlite3
-/dist
-/venv
 *.pyc
+
+db.sqlite3
+
+dist
+
+# packages folders
+node_modules
+venv
 
 # local env files
 .env

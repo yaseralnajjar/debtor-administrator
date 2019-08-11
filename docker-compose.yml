@@ -2,14 +2,13 @@ version: '3'
 
 services:
 
-
   db:
     restart: always
     image: postgres
     ports:
       - 5432:5432
     volumes:
-      - /var/dormportal/db:/var/lib/postgresql/data
+      - ./db:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: $POSTGRES_DB
       POSTGRES_USER: $POSTGRES_USER
@@ -21,21 +20,20 @@ nginx:
     ports:
       - 80:80
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/dormportal.conf
-      - /var/dormportal/media:/var/dormportal/media
+      - ./nginx.conf:/etc/nginx/conf.d/debtoradmin.conf
+    depends_on:
+      - api
 
   api:
     build:
       context: .
       dockerfile: ./Dockerfile
-      #args:
-      #  API_BASE_URL: $API_BASE_URL
+      args:
+        HOST_ENV: $HOST_ENV
+        GOOGLE_OAUTH_CLIENT_ID: $GOOGLE_OAUTH_CLIENT_ID
 
-    #command: sh -c "memcached -d -u root -s /tmp/memcached.sock && gunicorn --bind 0.0.0.0:8000 coretabs.wsgi --timeout 90 --log-level=DEBUG --daemon && celery worker -A coretabs -P solo --loglevel=INFO -n worker.%%h."
     #command: sh -c "tail -f /dev/null"
     command: sh -c "crond && gunicorn --bind 0.0.0.0:8000 backend.wsgi --timeout 90 --log-level=DEBUG"
-    #volumes:
-    #  - ./src/api/venv/:/djangoapp/venv/
     environment:
       HOST_ENV: $HOST_ENV
       ALLOWED_HOSTS: $ALLOWED_HOSTS
@@ -47,8 +45,6 @@ nginx:
       EMAIL_HOST_PASSWORD: $EMAIL_HOST_PASSWORD
       EMAIL_HOST_USER: $EMAIL_HOST_USER
       SECRET_KEY: $SECRET_KEY
-    args:
-      GOOGLE_OAUTH_CLIENT_ID: $GOOGLE_OAUTH_CLIENT_ID
     links:
       - db:db
     ports:
