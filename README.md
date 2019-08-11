@@ -4,9 +4,9 @@ A simple app  manage (CRUD) debtors, their bank account data (IBAN) and invoices
 
 ## Existing Models and APIs
 
-The [models.txt file](./docs/models.txt) and the [api.txt file](./docs/api.txt) contains all the models and the APIs that we have in the app, respectively.
+The [models.txt file](./thoughts/models.txt) and the [api.txt file](./thoughts/api.txt) contains all the models and the APIs that we have in the app, respectively.
 
-Both of the models and the APIs are built upon the [wireframe file](./docs/wireframe.jpg)
+Both of the models and the APIs are built upon the [wireframe file](./thoughts/wireframe.jpg)
 
 ## Setup
 
@@ -53,7 +53,11 @@ docker-compose -f docker-compose.yml -f docker-compose-staging.yml up -d
 
 You will find the app on [http://debtor.admin](http://debtor.admin)
 
-## Deploy Guide
+## Deploy on Your Own Server
+
+For [full guide about deployment and management in your own server, please refer to this guide from Dorm Portal project](https://coretabs.github.io/dorm-portal/#/) (which has very similar setup to this one).
+
+## Deploy on Heroku
 
 You can use the "one-click deploy" button below to try it out on Heroku, but you would still to do the following:
 
