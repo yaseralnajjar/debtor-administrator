@@ -2,6 +2,8 @@ export default {
   name: 'DebtorsListComponent',
   data() {
     return {
+      snackbarGetListFailed: false,
+      snackbarDeleteFailed: false,
       snackbarNotAllowed: false,
       headers: [
         { text: 'email', value: 'email' },
@@ -17,21 +19,25 @@ export default {
   methods: {
     getDebtors(){
       this.$backend.$fetchDebtors().then(response => {
-        //console.log(resp)
         this.debtors = response
       })
+      .catch(() => {
+          this.snackbarGetListFailed = true
+        }
+      )
     },
     deleteDebtor(id){
-
       this.$backend.$deleteDebtor(id)
-      .then(response => {
+      .then(() => {
         let idx = this.debtors.findIndex(i => i.id === id)
         this.debtors.splice(idx, 1)
       })
       .catch(error => {
         if(error.response.status==403){
-          console.log('unauthorized')
           this.snackbarNotAllowed = true
+        }
+        else{
+          this.snackbarDeleteFailed = true
         }
       })
     }

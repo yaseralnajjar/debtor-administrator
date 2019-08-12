@@ -2,7 +2,8 @@ export default {
   name: 'DebtorUpdateComponent',
   data() {
     return {
-      snackbarUpdated: false,
+      snackbarCreateFailed: false,
+      snackbarCreated: false,
       valid: false,
       debtorId: '',
       firstName: '',
@@ -40,10 +41,12 @@ export default {
           iban: this.iban,
         }
         this.$backend.$postDebtor(new_debtor)
-        .then(response => {
-          //console.log('done updating')
-          this.snackbarUpdated = true
+        .then(() => {
+          this.snackbarCreated = true
           setTimeout( () => this.$router.push({ path : '/debtors' }), 3000)
+        })
+        .catch(() => {
+          this.snackbarCreateFailed = true
         })
       }
     }

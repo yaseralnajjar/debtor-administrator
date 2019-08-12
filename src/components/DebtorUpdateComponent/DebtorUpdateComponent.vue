@@ -1,6 +1,11 @@
 <template>
     <v-content>
 
+      <v-snackbar v-model="snackbarUpdateFailed" :timeout="3000" top color="red">
+        <span>Ooops, Updating Debtor Failed!</span>
+        <v-btn flat color="white" @click="snackbarUpdateFailed = false">Close</v-btn>
+      </v-snackbar>
+
       <v-snackbar v-model="snackbarUpdated" :timeout="3000" top color="green">
         <span>Awesome, Debtor Updated Successfully!</span>
         <v-btn flat color="white" @click="snackbarUpdated = false">Close</v-btn>

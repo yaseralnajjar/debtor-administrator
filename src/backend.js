@@ -13,8 +13,6 @@ $backend.defaults.xsrfCookieName = 'csrftoken'
 $backend.interceptors.response.use(function (response) {
   return response
 }, function (error) {
-  // eslint-disable-next-line
-  //console.log(error)
   return Promise.reject(error)
 })
 
@@ -46,9 +44,6 @@ $backend.$deleteDebtor = (debtorId) => {
 $backend.$googleLogin = (token) => {
   return $backend.post('/auth/google/', { access_token: token })
     .then(response => response.data.key )
-    .catch(err => { 
-      //console.log(err.response) 
-    })
 }
 
 

@@ -1,6 +1,11 @@
 <template>
   <v-content>
 
+    <v-snackbar v-model="snackbarLoginFailed" :timeout="3000" top color="red">
+      <span>Sign in failed, please try again...</span>
+      <v-btn flat color="white" @click="snackbarLoginFailed = false">Close</v-btn>
+    </v-snackbar>
+
     <v-container fluid fill-height>
       <v-layout mt-5 justify-center>
         <v-flex xs12 sm8 md6>

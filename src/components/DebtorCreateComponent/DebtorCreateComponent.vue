@@ -1,9 +1,14 @@
 <template>
     <v-content>
 
-      <v-snackbar v-model="snackbarUpdated" :timeout="3000" top color="green">
+      <v-snackbar v-model="snackbarCreateFailed" :timeout="3000" top color="red">
+        <span>Ooops, Creating Debtor Failed!</span>
+        <v-btn flat color="white" @click="snackbarGetListFailed = false">Close</v-btn>
+      </v-snackbar>
+
+      <v-snackbar v-model="snackbarCreated" :timeout="3000" top color="green">
         <span>Debtor Added Successfully!</span>
-        <v-btn flat color="white" @click="snackbarUpdated = false">Close</v-btn>
+        <v-btn flat color="white" @click="snackbarCreated = false">Close</v-btn>
       </v-snackbar>
 
       <v-container fluid fill-height>

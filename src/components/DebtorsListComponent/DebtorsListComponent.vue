@@ -2,6 +2,16 @@
   <v-content>
     <h1>Debtors</h1>
 
+      <v-snackbar v-model="snackbarGetListFailed" :timeout="3000" top color="red">
+        <span>Ooops, Getting Debtors List Failed!</span>
+        <v-btn flat color="white" @click="snackbarGetListFailed = false">Close</v-btn>
+      </v-snackbar>
+
+      <v-snackbar v-model="snackbarDeleteFailed" :timeout="3000" top color="red">
+        <span>Ooops, Deleting Debtor Failed!</span>
+        <v-btn flat color="white" @click="snackbarDeleteFailed = false">Close</v-btn>
+      </v-snackbar>
+
       <v-snackbar v-model="snackbarNotAllowed" :timeout="3000" top color="red" @notAllowed="snackbarNotAllowed = true">
         <span>Mmm, you don't have the permissions to edit this one!</span>
         <v-btn flat color="white" @click="snackbarNotAllowed = false">Close</v-btn>
