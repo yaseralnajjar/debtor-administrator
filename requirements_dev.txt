@@ -1,20 +1,19 @@
 # django and drf
-Django==2.1.3
-djangorestframework==3.8.2
+Django==2.2.4
+djangorestframework==3.10.2
 
 # django extra packages
-django-rest-auth==0.9.3
-django-cors-middleware==1.3.1
-django-allauth==0.38.0
+whitenoise==4.1.3
+django-rest-auth==0.9.5
+django-cors-middleware==1.4.0
+django-allauth==0.39.1
 django-localflavor==2.2
 
 # dev tools
-Faker==1.0.0
 ptvsd==4.2.0
-pytz==2018.5
+pytz==2019.2
 
 # pip tools
 pip==19.2.1
-setuptools==40.5.0
-wheel==0.32.2
-whitenoise==4.0
+setuptools==41.0.1
+wheel==0.33.4
