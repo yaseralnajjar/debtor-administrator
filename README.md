@@ -30,6 +30,8 @@ From another tab in the same directory:
 yarn serve
 ```
 
+* Before running `yarn serve`, you will need to **write .env file with GOOGLE_OAUTH_CLIENT_ID** and run `yarn build` to bake in your Google client id for development.
+
 The Vuejs application will be served from `localhost:8080` and the Django Api
 and static files will be served from `localhost:8000`.
 
