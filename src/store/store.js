@@ -8,11 +8,17 @@ import getters from './getters'
 Vue.use(Vuex);
 
 
+let isAuth = localStorage.getItem('auth')
+let name = ''
+if(isAuth){
+    name = JSON.parse(localStorage.getItem('auth')).user_full_name
+}
+
 export default new Vuex.Store({
     state: {
         authStatus: '',
-        isAuth: localStorage.getItem('auth'),
-        name: '',
+        isAuth: isAuth,
+        name: name,
         isAllowed: true
     },
 
