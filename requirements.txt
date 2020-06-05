@@ -1,5 +1,5 @@
 # django and drf
-Django==2.2.4
+Django==2.2.13
 djangorestframework==3.10.2
 
 # django extra packages
