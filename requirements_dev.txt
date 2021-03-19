@@ -1,6 +1,6 @@
 # django and drf
 Django==2.2.4
-djangorestframework==3.10.2
+djangorestframework==3.11.2
 
 # django extra packages
 whitenoise==4.1.3
