@@ -14,6 +14,6 @@ ptvsd==4.2.0
 pytz==2019.2
 
 # pip tools
-pip==19.2.1
+pip==21.1
 setuptools==41.0.1
 wheel==0.33.4
